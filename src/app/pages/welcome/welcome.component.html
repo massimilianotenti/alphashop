@@ -1,0 +1,6 @@
+<app-jumbotron [Titolo]="titolo" [SottoTitolo]="sottotitolo" [Show]="false"></app-jumbotron>
+<p>saluti {{ utente }} <a routerLink="/articoli">qui</a> per visualizzare gli articoli</p>
+
+<button class="btn btn-primary" (click)="getSaluti()">Saluti</button>
+<h2>{{saluti}}</h2>
+<h2>{{errore}}</h2>
