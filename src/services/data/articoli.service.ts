@@ -93,6 +93,9 @@ export class ArticoliService {
     }
   }
   
+  delArticoliByCodArt = (codArt: string) => { 
+    return this.httpClient.delete<IArticoli>(`http://${this.server}:${this.porta}/api/articoli/elimina/${codArt}`);
+  }
   
   
 }

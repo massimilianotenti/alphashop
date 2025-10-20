@@ -41,6 +41,7 @@ export class ArticoliComponent implements OnInit {
   filter: string | null = "";
 
   filterType: number = 0;
+  codart: string = "";
 
   constructor(private articoliService: ArticoliService, private route: ActivatedRoute) { }
 
@@ -124,5 +125,32 @@ export class ArticoliComponent implements OnInit {
       this.filterType = 0;
     }    
   }
+
+  Elimina = (codArt: string) => {
+    this.codart = codArt;
+    this.articoliService.delArticoliByCodArt(codArt).subscribe({
+      next: this.handleOkDelete.bind(this),
+      error: this.handleErrorDelete.bind(this)
+    });
+    /* console.log(codArt); 
+    this.articoliService.delArticoliByCodArt(codArt).subscribe(
+      response => {
+        console.log(response);
+        this.articoli$ = this.articoli$.filter(item => item.codArt !== codArt);
+      }
+    ); */
+  }
+
+  handleOkDelete(response: any): void {
+    console.log(response);
+    this.articoli$ = this.articoli$.filter(item => item.codArt !== this.codart);
+    this.codart = "";
+  }
+
+  handleErrorDelete(error: any): void {
+    console.log(error);
+    this.errore$ = error.error.message;
+  }
+
 
 }

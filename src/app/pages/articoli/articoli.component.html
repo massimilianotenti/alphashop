@@ -67,14 +67,14 @@
               <td class="tbl-string">{{articolo.pesoNetto}}</td>
               <td class="tbl-string">{{articolo.prezzo | currency : 'EUR'}}</td>
               <td class="tbl-string infoBadge">
-                <span [ngClass]="articolo.idStatoArticolo === 'Attivo'  ? 'badge rounded-pill alert-success' : 
-                                 articolo.idStatoArticolo === 'Sospeso' ? 'badge rounded-pill alert-warning' : 
-                                                                          'badge rounded-pill alert-danger'">{{articolo.idStatoArticolo}}</span>
+                <span [ngClass]="articolo.idStatoArticolo === 'Attivo'  ? 'badge rounded-pill bg-success' : 
+                                 articolo.idStatoArticolo === 'Sospeso' ? 'badge rounded-pill bg-warning text-dark' : 
+                                                                          'badge rounded-pill abg-danger'">{{articolo.idStatoArticolo}}</span>
               </td>
               <td class="tbl-string">{{articolo.dataCreazione | date : 'dd-MM-YYYY'}}</td>
 
               <td class="text-end">
-                <button href="#" class="btn btn-light text-danger">Elimina</button>
+                <button (click)="Elimina(articolo.codArt)" class="btn btn-light text-danger">Elimina</button>
 								<div class="dropdown">
 									<button href="#" data-bs-toggle="dropdown" class="btn btn-light">
                     <i class="material-icons md-more_horiz"></i>
