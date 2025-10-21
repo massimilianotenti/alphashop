@@ -7,6 +7,7 @@ import { ArticoliComponent } from './pages/articoli/articoli.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { RouteGuardServiceService } from 'src/services/route-guard-service.service';
 import { GridArticoliComponent } from './pages/grid-articoli/grid-articoli.component';
+import { GestartComponent } from './pages/gestart/gestart.component';
 
 const routes: Routes = [  
   { path: '', component: LoginComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'welcome/:userid', component: WelcomeComponent, canActivate: [RouteGuardServiceService]},
   { path: 'articoli', component: ArticoliComponent, canActivate: [RouteGuardServiceService]},
   { path: 'articoli/grid', component: GridArticoliComponent, canActivate: [RouteGuardServiceService]},
+  { path: 'gestart/:codart', component: GestartComponent, canActivate: [RouteGuardServiceService]},
   { path: 'logout', component: LogoutComponent}, 
   { path: '**', component: ErrorComponent}  
 ];

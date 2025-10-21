@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { map, Observable, of } from 'rxjs';
 import { IArticoli } from 'src/app/models/articoli';
 import { ArticoliService } from 'src/services/data/articoli.service';
@@ -43,7 +43,7 @@ export class ArticoliComponent implements OnInit {
   filterType: number = 0;
   codart: string = "";
 
-  constructor(private articoliService: ArticoliService, private route: ActivatedRoute) { }
+  constructor(private articoliService: ArticoliService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     /*
@@ -65,8 +65,11 @@ export class ArticoliComponent implements OnInit {
     this.getArticoli(this.filter);
   }
 
+  // #region [Ricerca]
+  // -----------------------------------------------------------------------------
   getArticoli = (filter: string) => {
     this.articoli$ = [];
+    this.errore$ = ""; // Azzera l'errore all'inizio di una nuova ricerca
     
     if (this.filterType == 0) {
      this.articoliService.getArticoliByCodice(filter).subscribe({
@@ -121,11 +124,20 @@ export class ArticoliComponent implements OnInit {
     {
       console.log(errore);
       this.errore$ = errore.error.message;
-      console.log(this.errore$);
       this.filterType = 0;
+
+      // Nasconde l'errore dopo 5 secondi
+      setTimeout(() => {
+        this.errore$ = "";
+      }, 5000);
     }    
   }
 
+  // #endregion
+
+
+  // #region [Eliminazione]
+  // -----------------------------------------------------------------------------
   Elimina = (codArt: string) => {
     this.codart = codArt;
     this.articoliService.delArticoliByCodArt(codArt).subscribe({
@@ -143,6 +155,7 @@ export class ArticoliComponent implements OnInit {
 
   handleOkDelete(response: any): void {
     console.log(response);
+    this.errore$ = ""; // Azzera l'errore dopo una cancellazione riuscita
     this.articoli$ = this.articoli$.filter(item => item.codArt !== this.codart);
     this.codart = "";
   }
@@ -150,7 +163,25 @@ export class ArticoliComponent implements OnInit {
   handleErrorDelete(error: any): void {
     console.log(error);
     this.errore$ = error.error.message;
+
+    // Nasconde l'errore dopo 5 secondi
+    setTimeout(() => {
+      this.errore$ = "";
+    }, 5000);
   }
 
+  // #endregion
+
+
+  // #region [Modifica]
+  // -----------------------------------------------------------------------------
+
+  Modifica = (codArt: string) => {
+    console.log(codArt);
+    this.router.navigate(['/gestart/', codArt]);
+  }
+
+
+  // #endregion
 
 }

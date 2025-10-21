@@ -74,19 +74,21 @@
               <td class="tbl-string">{{articolo.dataCreazione | date : 'dd-MM-YYYY'}}</td>
 
               <td class="text-end">
-                <button (click)="Elimina(articolo.codArt)" class="btn btn-light text-danger">Elimina</button>
-								<div class="dropdown">
-									<button href="#" data-bs-toggle="dropdown" class="btn btn-light">
+                <button (click)="Elimina(articolo.codArt)" class="btn btn-light text-danger me-2">
+                  Elimina
+                </button>
+                
+                <div class="dropdown d-inline-block">
+                  <button class="btn btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="material-icons md-more_horiz"></i>
                   </button>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Dettaglio</a></li>
-										<li><a class="dropdown-item" href="#">Info</a></li>
-										<li><a class="dropdown-item" href="#">Modifica</a></li>
-									</ul>
-								</div> <!-- dropdown //end -->
-							</td>
-
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0)">Dettaglio</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)">Info</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="Modifica(articolo.codArt)">Modifica</a></li>
+                  </ul>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
