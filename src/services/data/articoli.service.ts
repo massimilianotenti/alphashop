@@ -54,7 +54,7 @@ export class ArticoliService {
           // Normalmente è sconsigliato modificare i dati ricevuti (mutazione), si dovrebbe modificare 
           // i dati che vengono restituiti a chi chiama il metodo
           response.forEach(item => {            
-            item.idStatoArticolo = this.getDesStatoArt(item.idStatoArticolo);            
+            item.desStatoArticolo = this.getDesStatoArt(item.idStatoArticolo);            
           });
           // Restituisci l'array modificato
           return response;
@@ -66,7 +66,7 @@ export class ArticoliService {
     return this.httpClient.get<IArticoli>(`http://${this.server}:${this.porta}/api/articoli/cerca/codice/${codice}`)
     .pipe(        
         map(response => {                         
-            response.idStatoArticolo = this.getDesStatoArt(response.idStatoArticolo);                      
+            response.desStatoArticolo = this.getDesStatoArt(response.idStatoArticolo);                      
           return response;
         })
       );
@@ -76,7 +76,7 @@ export class ArticoliService {
     return this.httpClient.get<IArticoli>(`http://${this.server}:${this.porta}/api/articoli/cerca/ean/${ean}`)
     .pipe(        
         map(response => {                         
-            response.idStatoArticolo = this.getDesStatoArt(response.idStatoArticolo);                      
+            response.desStatoArticolo = this.getDesStatoArt(response.idStatoArticolo);                      
           return response;
         })
       );

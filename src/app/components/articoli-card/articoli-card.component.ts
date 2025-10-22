@@ -19,6 +19,7 @@ export class ArticoliCardComponent implements OnInit {
     pzCart: 0,
     codStat: "",
     idStatoArticolo: "",
+    desStatoArticolo:"",
     pesoNetto: 0,
     prezzo: 0,
     active: true,
