@@ -41,11 +41,12 @@
 			</div>
 			<div class="col-sm-6 mb-3">
 				<label class="form-label">Iva</label>
-				<select class="form-select">
-					<option> 22% </option>
+				<select class="form-select" [(ngModel)]="articolo.idIva">
+					<option [ngValue]="iva.idIva" *ngFor="let iva of Iva">{{iva.idIva}} - {{iva.descrizione}}</option>
+					<!-- <option> 22% </option>
 					<option> 10% </option>
 					<option> 4% </option>
-					<option> Esente </option>
+					<option> Esente </option> -->
 				</select>
 			</div>
 		</div> <!-- row.// -->
@@ -77,10 +78,11 @@
         <div class="row gx-2">
 			<div class="col-sm-6 mb-3">
 				<label class="form-label">Categoria:</label>
-				<select class="form-select">
-					<option> Alimentare </option>
+				<select class="form-select" [(ngModel)]="articolo.idFamAss">
+					<option [ngValue]="categoria.id" *ngFor="let categoria of Cat">{{categoria.id}} - {{categoria.descrizione}}</option>
+					<!-- <option> Alimentare </option>
 					<option> Banco </option>
-					<option> Chimico </option>
+					<option> Chimico </option> -->
 				</select>
 			</div>
 				<div class="col-sm-6 mb-3">

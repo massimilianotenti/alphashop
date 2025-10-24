@@ -24,7 +24,9 @@ export class ArticoliCardComponent implements OnInit {
     prezzo: 0,
     active: true,
     dataCreazione: new Date(),
-    imageUrl: ''
+    imageUrl: '',
+    idFamAss: -1,
+    idIva: -1
   }
 
   @Output()

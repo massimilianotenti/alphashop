@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs';
-import { IArticoli } from 'src/app/models/articoli';
+import { IArticoli, ICat, IIva } from 'src/app/models/articoli';
 
 @Injectable({
   providedIn: 'root'
@@ -97,5 +97,12 @@ export class ArticoliService {
     return this.httpClient.delete<IArticoli>(`http://${this.server}:${this.porta}/api/articoli/elimina/${codArt}`);
   }
   
+  getIva = () => { 
+    return this.httpClient.get<IIva[]>(`http://${this.server}:${this.porta}/api/iva/cerca/`);
+  }
   
+  getCat = () => { 
+    return this.httpClient.get<ICat[]>(`http://${this.server}:${this.porta}/api/farmassort/cerca/`);
+  }
+
 }

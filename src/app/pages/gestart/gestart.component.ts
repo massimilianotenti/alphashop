@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IArticoli } from 'src/app/models/articoli';
+import { IArticoli, IIva, ICat} from 'src/app/models/articoli';
 import { ArticoliService } from 'src/services/data/articoli.service';
 
 @Component({
@@ -12,7 +12,25 @@ export class GestartComponent implements OnInit {
 
   title: string = "Modifica articoli";
   codart: string = "";
-  articolo!: IArticoli;
+  articolo: IArticoli = {
+    codArt: '',
+    descrizione: '',
+    um: '',
+    codStat: '',
+    pzCart: 0,
+    pesoNetto: 0,
+    prezzo: 0,
+    idStatoArticolo: '',
+    desStatoArticolo: '',
+    idFamAss: -1,
+    idIva: -1,
+    dataCreazione: new Date(),
+    imageUrl: '',
+    active: true
+  };
+
+  Iva: IIva[] = [];
+  Cat: ICat[] = [];
 
   constructor(private route: ActivatedRoute, private articoliService: ArticoliService) { }
 
@@ -23,11 +41,31 @@ export class GestartComponent implements OnInit {
       next: this.handleResponse.bind(this),
       error: this.handleError.bind(this)
       });
+
+    this.articoliService.getIva().subscribe({
+      next: this.handleIva.bind(this),
+      error: this.handleError.bind(this)
+      });
+
+    this.articoliService.getCat().subscribe({
+      next: this.handleCat.bind(this),
+      error: this.handleError.bind(this)
+      });
   }
 
   handleResponse(response: any): void {
     this.articolo = response;
+    console.log(this.articolo);
   }
+  handleIva(response: any): void {
+    this.Iva = response;
+    console.log(this.Iva);
+  }
+
+  handleCat(response: any): void {
+    this.Cat = response;
+    console.log(this.Cat);
+  }  
 
   handleError(error: any): void {
     console.log(error);
