@@ -19,7 +19,7 @@
 			</div>
 			<div class="col-sm-6 mb-3">
 				<label for="ean" class="form-label">Barcode:</label>
-				<input id="ean"  type="text" placeholder="" class="form-control" >
+				<input id="ean"  type="text" placeholder="" class="form-control" value="{{ean}}">
 			</div>
 		</div>
 
@@ -102,7 +102,7 @@
 		</div>
 
       <br>
-      <button class="btn btn-primary">Salva Articolo</button>
+      <button class="btn btn-primary" (click)="salva()">Salva Articolo</button>
 
 
 <!--    </form>-->

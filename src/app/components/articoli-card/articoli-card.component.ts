@@ -16,17 +16,18 @@ export class ArticoliCardComponent implements OnInit {
     codArt: '',
     descrizione: '',
     um: '',
+    codStat: '',
     pzCart: 0,
-    codStat: "",
-    idStatoArticolo: "",
-    desStatoArticolo:"",
     pesoNetto: 0,
     prezzo: 0,
-    active: true,
+    idStatoArticolo: '',
+    desStatoArticolo: '',
+    idFamAss: -1,
+    idIva: -1,
+    ean: [],
     dataCreazione: new Date(),
     imageUrl: '',
-    idFamAss: -1,
-    idIva: -1
+    active: true
   }
 
   @Output()

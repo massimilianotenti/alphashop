@@ -105,4 +105,8 @@ export class ArticoliService {
     return this.httpClient.get<ICat[]>(`http://${this.server}:${this.porta}/api/farmassort/cerca/`);
   }
 
+  updateArticolo = (articolo: IArticoli) => {
+    return this.httpClient.put(`http://${this.server}:${this.porta}/api/articoli/modifica/`, articolo);
+  }
+
 }
